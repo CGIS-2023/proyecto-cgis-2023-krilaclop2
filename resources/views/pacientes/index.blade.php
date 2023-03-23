@@ -1,119 +1,137 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Pacientes') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pacientes</title>
+        <style>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="flex items-center mt-4 ml-2">
-                    <form method="GET" action="{{ route('pacientes.create') }}">
-                        <x-button type="subit" class="ml-4">
-                            {{ __('Regristrar Paciente') }}
-                        </x-button>
+            .content-table {
+                border-collapse: collapse;
+                margin: 25px 0;
+                text-align: center;
+                font-size: 0.9em;
+                min-width: 400px;
+                border-radius: 5px 5px 0 0;
+                overflow: hidden;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            }
+
+            .content-table thead tr {
+                background-color: #009879;
+                color: #ffffff;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .content-table th,
+            .content-table td {
+                padding: 12px 15px;
+            }
+
+            .content-table tbody tr {
+                border-bottom: 1px solid #dddddd;
+                background-color: #f3f3f3;
+                font-weight: bold;
+            }
+
+            body {
+                margin: auto;
+                padding: 50px;
+            }
+
+            button {
+                width: 80%;
+                background-color: #009879;
+                border: none;
+                color: white;
+                padding: 5px 10px;
+                text-decoration: none;
+                margin: 13px 12px 12px 10px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .nuevoPaciente {
+                width: 10%
+            }
+
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+
+            /* input[type=text] {
+                background-color: white;
+                background-image: url('searchicon.png');
+                background-position: 10px 10px;
+                background-repeat: no-repeat;
+                padding-left: 40px;
+            } */
+        </style>
+    </head>
+    <body>
+    <h2> Listado de Pacientes</h2>
+    <!-- <input type="text" placeholder="Buscar..."> -->
+    <table class="content-table">
+        <thead class="content-table thead tr">
+        <tr>
+            <td> Nombre </td>
+            <td> Apellidos </td>
+            <td> DNI </td>
+            <td> Sexo </td>
+            <td> Fecha de Nacimiento </td>
+            <td> Seguro </td>
+            <td> Correo </td>
+            <td> Opciones </td>
+        </tr>
+        </thead>
+        <tbody class="content-table tbody tr:last-of-type">
+        @foreach ($pacientes as $paciente)
+            <tr>
+                <td>{{ $paciente->nombre }}</td>
+                <td>{{ $paciente->apellidos }}</td>
+                <td>{{ $paciente->dni }}</td>
+                <td>{{ $paciente->sexo }}</td>
+                <td>{{ $paciente->fecha_nacimiento }}</td>
+                <td>{{ $paciente->seguro }}</td>
+                <td>{{ $paciente->correo }}</td>
+                <td>
+                <div class="container">
+                    <form action="/pacientes/{{$paciente->id}}">
+                        @csrf
+                        @method('show')
+                        <button type='submit'>Ver</button>
+                    </form>
+                    <br>
+                    <form action="/pacientes/{{$paciente->id}}/edit">
+                        @csrf
+                        @method('edit')
+                        <button type='submit'>Editar</button>
+                    </form>
+                    <br>
+                    <form action="/pacientes" method="POST">
+                        @csrf
+                        @method('delete')
+                        <script>
+                            $(".specialButton").click(function(){
+                                return confirm("¿Seguro de que deseas borrar este dato?");
+                            });
+                        </script>
+                        <button type='submit'>Eliminar</button>
                     </form>
                 </div>
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <table class="min-w-max w-full table-auto">
-                        <thead>
-                            <tr class="bg-gray-200 text-gray-900 uppercase text-sm leading-normal">
-                                <th class="py-3 px-6 text-left">ID</th>
-                                <th class="py-3 px-6 text-left">Nombre</th>
-                                <th class="py-3 px-6 text-left">Apellidos</th>
-                                <th class="py-3 px-6 text-left">DNI</th>
-                                <th class="py-3 px-6 text-left">Fecha de nacimiento</th>
-                                <th class="py-3 px-6 text-left">Seguro</th>
-                                <th class="py-3 px-6 text-left">Correo</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-gray-600 text-sm font-light">
-
-                            @foreach ($pacientes as $paciente)
-                            <tr class= "border-gray-200">
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{$paciente->id}}</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{$paciente->nombre}}</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{$paciente->apellidos}}</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{$paciente->dni}}</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{$paciente->fecha_nacimiento->format('d/m/Y')}}</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{$paciente->seguro ? 'Adeslas' : 'Asisa' : 'Muface' : 'None'}}</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{$paciente->correo}}</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-6 text-center">
-                                    <div class="flex item-center justify-end">
-                                        {{-- <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                            </svg>
-                                        </div> --}}
-                                        <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <a href="{{route('pacientes.show', $paciente->id)}}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                </svg>
-                                            </a>
-                                        </div>
-
-                                        <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <a href="{{route('pacientes.edit', $paciente->id)}}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                        <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <form id="delete-form-{{$paciente->id}}" method="POST" action="{{ route('pacientes.destroy', $paciente->id) }}">
-                                                @csrf
-                                                @method('delete')
-                                                <a class="cursor-pointer" onclick="getElementById('delete-form-{{$paciente->id}}').submit();">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                    </svg>
-                                                </a>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-
-                        </tbody>
-                    </table>
-                    {{ $pacientes->links() }}
-
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+   <br>
+   <form action="/pacientes/create">
+        @csrf
+        <button type='submit' class="nuevoPaciente">Nuevo Paciente</button>
+    </form>
+   </body>
+</html>
+  

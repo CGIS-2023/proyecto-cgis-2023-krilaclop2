@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Paciente::class, 'paciente');
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        //
+        $pacientes = Paciente::all();
+        return view ('/pacientes/index', ['pacientes' => $pacientes]);
     }
 
     /**
@@ -23,7 +30,7 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('/pacientes/create');
     }
 
     /**
@@ -34,7 +41,9 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paciente = new Paciente($request->all());
+        $paciente->save();
+        return redirect()->action([PacienteController::class, 'index']);
     }
 
     /**
@@ -45,7 +54,8 @@ class PacienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $paciente = Paciente::find($id);
+        return view('/pacientes/show', ['paciente' => $paciente]);
     }
 
     /**
@@ -54,9 +64,9 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Paciente $paciente)
     {
-        //
+        return view('/pacientes/edit', ['paciente' => $paciente]);
     }
 
     /**
@@ -66,9 +76,11 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, Paciente $paciente)
+    {   //variable $request contiene campos modificados
+        $paciente->fill($request->all());// los actualiza
+        $paciente->save();//se guarda
+        return redirect()->action([PacienteController::class, 'index']);
     }
 
     /**
@@ -79,6 +91,8 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $paciente = Paciente::find($id);
+        $paciente->delete();
+        return redirect()->action([PacienteController::class, 'index']);
     }
 }
