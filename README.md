@@ -64,89 +64,89 @@ El sistema deberá permitir administrar de manera eficiente los servicios de urg
 ## Usuarios del sistema
 
 - **Paciente:**
- - Pacientes con diferentes necesidades según su prioridad y riesgo.
+- - Pacientes con diferentes necesidades según su prioridad y riesgo.
 
 - **Administrativo.**
 
 - **Enfermero:**
- - Enfermeros de triaje.
- - Enfermeros de tratamiento.
+- - Enfermeros de triaje.
+- - Enfermeros de tratamiento.
 
 - **Médico de urgencias:**
- - Médicos especializados en diferentes campos.
+- - Médicos especializados en diferentes campos.
 
 
 ## Requisitos de información
 
 - **RI01: Pacientes.**
 El sistema deberá permitir disponer de la siguiente información sobre los pacientes:
- - Identificador
- - Nombre
- - Apellidos
- - DNI
- - Correo Electrónico
- - Sexo (Hombre, Mujer, Otro)
- - Fecha de Nacimiento
- - Seguro (Adeslas, Sanitas, Asisa, MAPFRE, None)
- - Para cada Registro de una entrada en UCI:
-  - Fecha y hora de entrada
-  - Razón de Admisión
+- - Identificador
+- - Nombre
+- - Apellidos
+- - DNI
+- - Correo Electrónico
+- - Sexo (Hombre, Mujer, Otro)
+- - Fecha de Nacimiento
+- - Seguro (Adeslas, Sanitas, Asisa, MAPFRE, None)
+- - Para cada Registro de una entrada en UCI:
+- - Fecha y hora de entrada
+- - Razón de Admisión
 
- - Para cada registro de triaje se genera un Informe de Triaje:
-  - Enfermero en triaje
-  - Fecha y hora de entrada
-  - Observaciones
-  - Nivel de riesgo del paciente (Nivel I, II, III, IV, V)
-  - Especialidad a derivar
-  - Médico a derivar
+- - Para cada registro de triaje se genera un Informe de Triaje:
+- - - Enfermero en triaje
+- - - Fecha y hora de entrada
+- - - Observaciones
+- - - Nivel de riesgo del paciente (Nivel I, II, III, IV, V)
+- - - Especialidad a derivar
+- - - Médico a derivar
 
- - Para cada registro de una salida en UCI se genera un Informe Médico:
-  - Fecha y hora de salida
-  - Razón de Admisión
-  - Médico
-  - Observaciones
-  - Diagnóstico
-  - Tratamiento
+- - Para cada registro de una salida en UCI se genera un Informe Médico:
+- - - Fecha y hora de salida
+- - - Razón de Admisión
+- - - Médico
+- - - Observaciones
+- - - Diagnóstico
+- - - Tratamiento
 
 - **RI02: Administrativos.**
 El sistema deberá permitir disponer de la siguiente información sobre los administrativos:
- - Identificador
- - Nombre
- - Apellidos
- - DNI
- - Sexo (Hombre, Mujer, Otro)
- - Fecha de Nacimiento
- - Correo Electrónico
+- - Identificador
+- - Nombre
+- - Apellidos
+- - DNI
+- - Sexo (Hombre, Mujer, Otro)
+- - Fecha de Nacimiento
+- - Correo Electrónico
 
 - **RI03: Enfermeros.**
 El sistema deberá permitir disponer de la siguiente información sobre los enfermero:
- - Identificador
- - Nombre
- - Apellidos
- - DNI
- - Sexo (Hombre, Mujer, Otro)
- - Fecha de Nacimiento
- - Correo Electrónico
- - Turno (Tratamiento, Triaje)
+- - Identificador
+- - Nombre
+- - Apellidos
+- - DNI
+- - Sexo (Hombre, Mujer, Otro)
+- - Fecha de Nacimiento
+- - Correo Electrónico
+- - Turno (Tratamiento, Triaje)
 
 - **RI04: Médicos.**
 El sistema deberá permitir disponer de la siguiente información sobre los médicos:
- - Identificador
- - Nombre
- - Apellidos
- - DNI
- - Sexo (Hombre, Mujer, Otro)
- - Fecha de Nacimiento
- - Correo Electrónico
- - Especialidad (Alergología, Cardiología, Pediatría, ...)
+- - Identificador
+- - Nombre
+- - Apellidos
+- - DNI
+- - Sexo (Hombre, Mujer, Otro)
+- - Fecha de Nacimiento
+- - Correo Electrónico
+- - Especialidad (Alergología, Cardiología, Pediatría, ...)
 
 - **RI05: Tratamientos.**
 El sistema deberá permitir disponer de la siguiente información sobre los tratamientos:
- - Identificador
- - Nombre del tratamiento
- - Tipo (médico, quirúrgico, paliativo, alternativo)
- - Dosis (tomas/día)
- - Fecha y hora en el que se administró
+- - Identificador
+- - Nombre del tratamiento
+- - Tipo (médico, quirúrgico, paliativo, alternativo)
+- - Dosis (tomas/día)
+- - Fecha y hora en el que se administró
 
 
 ## Requisitos funcionales
@@ -210,7 +210,7 @@ El sistema deberá evitar que más de un paciente sea asignado al mismo enfermer
 
 <img src="triaje2.png" alt="Modelado Concpetual Triaje">
 
-Acceso al Google Drive: 'https://docs.google.com/document/d/1PJ4XQMhbaTsfHtydcpAgyM3474Mv0MHhffudVmPXV-4/edit?usp=sharing'
+> Acceso al Google Drive: 'https://docs.google.com/document/d/1PJ4XQMhbaTsfHtydcpAgyM3474Mv0MHhffudVmPXV-4/edit?usp=sharing'
 
 
 
