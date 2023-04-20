@@ -78,8 +78,9 @@
                 <div class="links">
                     <a href="https://docs.google.com/document/d/1PJ4XQMhbaTsfHtydcpAgyM3474Mv0MHhffudVmPXV-4/edit?usp=sharing">Documento de Requisitos</a>
                     <a href="/pacientes">Pacientes</a>
-                    <a href="https://youtu.be/dQw4w9WgXcQ">Médicos</a>
-                    <a href="https://youtu.be/rqAnXE7vzRw">Administrativos</a>
+                    <a href="/medicos">Médicos</a>
+                    <a href="/enfermeros">Enfermeros</a>
+                    <a href="/administrativos">Administrativos</a>
                     <a href="https://github.com/CGIS-2023/proyecto-cgis-2023-krilaclop2">GitHub</a>
                 </div>
             </div>

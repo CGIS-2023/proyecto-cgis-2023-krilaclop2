@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-        <title>Ver Paciente</title>
+        <title>Editar Administrativos</title>
         <style>
             .box{
             width: 800px;
@@ -22,7 +22,6 @@
                 padding: 12px 20px;
                 margin: 20px 0;
                 box-sizing: border-box;
-                background-color: white;
             }
 
             input[type=text]:focus {
@@ -34,7 +33,6 @@
                 padding: 16px 20px;
                 margin: 20px 0;
                 border-radius: 4px;
-                background-color: #FFFFFF;
             }
 
             .form-date {
@@ -56,17 +54,6 @@
             }
 
             .buttonCancelar {
-                background-color: #CD5C5C;
-            }
-
-            legend {
-                font-size: 25px;
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .buttonCancelar {
                 display: block;
                 width: 100px;
                 margin-left: auto;
@@ -82,55 +69,53 @@
                 align-items: center;
             }
 
+            legend {
+                font-size: 25px;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
         </style>
     </head>
     <body>
-    <legend>Información del Paciente</legend>
+    <legend>Información del Administrativo</legend>
     <br>
-    <form action="{{route('pacientes.update', $paciente->id)}}" method="POST" role="form" class="box">
+    <form action="{{route('administrativos.update', $administrativo->id)}}" method="POST" role="form" class="box">
         {{ csrf_field()}} 
         @method('put')
         <br>
         <div class="py-12">
             <label for="">Nombre</label>
-            <input readonly disabled type="text" name="nombre" value="{{$paciente-> nombre}}">
+            <input type="text" name="nombre" value="{{$administrativo-> nombre}}">
         </div>
         <div class="py-12">
             <label for="">Apellidos</label>
-            <input readonly disabled type="text" name="apellidos" value="{{$paciente-> apellidos}}">
+            <input type="text" name="apellidos" value="{{$administrativo-> apellidos}}">
         </div>
         <div class="">
                 <label for="">DNI</label>
-                <input readonly disabled type="text" class="" id="" value="{{$paciente-> dni}}">
+                <input type="text" class="" id="" value="{{$administrativo-> dni}}">
         </div>
         <div class="">
             <label for="">Sexo</label>
-            <select readonly disabled name="sexo" id="sexo">
-                <option value="F" {{($paciente->sexo == 'Femenino')? 'selected': ''}}>Femenino</option>
-                <option value="M" {{($paciente->sexo == 'Masculino')? 'selected': ''}}>Masculino</option>
-                <option value="O" {{($paciente->sexo == 'Otro')? 'selected': ''}}>Otro</option> 
+            <select name="sexo" id="sexo">
+                <option value="Femenino" {{($administrativo->sexo == 'Femenino')? 'selected': ''}}>Femenino</option>
+                <option value="Masculino" {{($administrativo->sexo == 'Masculino')? 'selected': ''}}>Masculino</option>
+                <option value="Otro" {{($administrativo->sexo == 'Otro')? 'selected': ''}}>Otro</option> 
             </select>
         </div>
             <div class="">
                 <label for="">Fecha de Nacimiento</label>
-                <input readonly disabled type="date" class="form-date" id="" value="{{$paciente-> fecha_nacimiento}}">
-            </div>
-            <div class="">
-                <label for="">Seguro</label>
-                <select readonly disabled name="seguro">
-                    <option value="Adeslas" {{($paciente->seguro == 'Adeslas')? 'selected': ''}}>Adeslas</option>
-                    <option value="Asisa" {{($paciente->seguro == 'Asisa')? 'selected': ''}}>Asisa</option>
-                    <option value="MAPFRE" {{($paciente->seguro == 'MAPFRE')? 'selected': ''}}>MAPFRE</option>
-                    <option value="Sanitas" {{($paciente->seguro == 'Sanitas')? 'selected': ''}}>Sanitas</option>
-                    <option value="None" {{($paciente->seguro == 'None')? 'selected': ''}}>None</option>
-                </select>
+                <input type="date" class="form-date" id="" value="{{$administrativo-> fecha_nacimiento}}">
             </div>
             <div class="">
                 <label for="">Correo</label>
-                <input readonly disabled type="text" class="" id="" value="{{$paciente-> correo}}">
+                <input type="text" class="" id="" value="{{$administrativo-> correo}}">
             </div>
+            <a href="/administrativos" class="buttonCancelar">Cancelar</a>
+            <button type="submit">Guardar Cambios</button>
+            <br>
     </form>
-    <br>
-        <a href="/pacientes" class="buttonCancelar">Volver</a>
     </body>
 </html>

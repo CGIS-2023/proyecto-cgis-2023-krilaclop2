@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Pacientes</title>
+        <title>Médicos</title>
         <style>
 
             .content-table {
@@ -62,17 +62,10 @@
                 height: 100%;
             }
 
-            /* input[type=text] {
-                background-color: white;
-                background-image: url('searchicon.png');
-                background-position: 10px 10px;
-                background-repeat: no-repeat;
-                padding-left: 40px;
-            } */
         </style>
     </head>
     <body>
-    <h2> Listado de Pacientes</h2>
+    <h2> Listado de Médicos</h2>
     <!-- <input type="text" placeholder="Buscar..."> -->
     <table class="content-table">
         <thead class="content-table thead tr">
@@ -82,36 +75,36 @@
             <td> DNI </td>
             <td> Sexo </td>
             <td> Fecha de Nacimiento </td>
-            <td> Seguro </td>
             <td> Correo </td>
+            <td> Especialidad </td>
             <td> Opciones </td>
         </tr>
         </thead>
         <tbody class="content-table tbody tr:last-of-type">
-        @foreach ($pacientes as $paciente)
+        @foreach ($medicos as $medico)
             <tr>
-                <td>{{ $paciente->nombre }}</td>
-                <td>{{ $paciente->apellidos }}</td>
-                <td>{{ $paciente->dni }}</td>
-                <td>{{ $paciente->sexo }}</td>
-                <td>{{ $paciente->fecha_nacimiento }}</td>
-                <td>{{ $paciente->seguro }}</td>
-                <td>{{ $paciente->correo }}</td>
+                <td>{{ $medico->nombre }}</td>
+                <td>{{ $medico->apellidos }}</td>
+                <td>{{ $medico->dni }}</td>
+                <td>{{ $medico->sexo }}</td>
+                <td>{{ $medico->fecha_nacimiento }}</td>
+                <td>{{ $medico->correo }}</td>
+                <td>{{ $medico->especialidad }}</td>
                 <td>
                 <div class="container">
-                    <form action="/pacientes/{{$paciente->id}}">
+                    <form action="/medicos/{{$medico->id}}">
                         @csrf
                         @method('show')
                         <button type='submit'>Ver</button>
                     </form>
                     <br>
-                    <form action="/pacientes/{{$paciente->id}}/edit">
+                    <form action="/medicos/{{$medico->id}}/edit">
                         @csrf
                         @method('edit')
                         <button type='submit'>Editar</button>
                     </form>
                     <br>
-                    <form action="/pacientes/{{$paciente->id}}" method="POST">
+                    <form action="/medicos/{{$medico->id}}" method="POST">
                         @csrf
                         @method('delete')
                         <button type='submit'>Eliminar</button>
@@ -123,10 +116,9 @@
         </tbody>
     </table>
    <br>
-   <form action="/pacientes/create">
+   <form action="/medicos/create">
         @csrf
-        <button type='submit' class="nuevoPaciente">Nuevo Paciente</button>
+        <button type='submit' class="nuevoPaciente">Nuevo Médico</button>
     </form>
    </body>
 </html>
-  

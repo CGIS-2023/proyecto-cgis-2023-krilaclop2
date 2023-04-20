@@ -2,7 +2,7 @@
 <html>
 <head>
         <meta charset="utf-8">
-        <title>Nuevo Paciente</title>
+        <title>Nuevo Médico</title>
         <style>
             .box{
             width: 800px;
@@ -79,9 +79,9 @@
         </style>
     </head>
     <body>
-        <legend>Información del Paciente</legend>
+        <legend>Información del Médico</legend>
         <br>
-            <form action="/pacientes" method="POST" role="form" class="box">
+            <form action="/medicos" method="POST" role="form" class="box">
             {{ csrf_field() }}
             <br>
             <div class="">
@@ -109,21 +109,18 @@
                 <input type="date" name="fecha_nacimiento" class="form-date" id="" placeholder="Seleccione una fecha">
             </div>
             <div class="">
-                <label for="">Seguro</label>
-                <select name="seguro" id="" placeholder="Seleccione un seguro">
-                    <option value="Adeslas">Adeslas</option>
-                    <option value="Asisa">Asisa</option>
-                    <option value="MAPFRE">MAPFRE</option>
-                    <option value="Sanitas">Sanitas</option>
-                    <option value="None">None</option>
-                </select>
-            </div>
-            <div class="">
                 <label for="">Correo</label>
                 <input type="text" name="correo" class="" id="" placeholder="Introduzca un correo electrónico">
             </div>
+            <div class="">
+                <label for="">Especialidad</label>
+                <select name="especialidad" id="" placeholder="Seleccione una especialidad">
+                    <option value="Alergología">Alergología</option>
+                    <option value="Cardiología">Cardiología</option>
+                </select>
+            </div>
             <div>
-            <a href="/pacientes" class="buttonCancelar">Cancelar</a>
+            <a href="/medicos" class="buttonCancelar">Cancelar</a>
             <button type="submit">Guardar</button>
             </div>
         </form>

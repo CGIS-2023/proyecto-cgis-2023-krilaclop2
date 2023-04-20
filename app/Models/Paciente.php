@@ -22,9 +22,9 @@ class Paciente extends Model
 
     # Aquí irían las relaciones con otros modelos!
     # Ejemplo: médico relacionado con un administrador a traves del registro
-    
-    public function user(){
-        return $this->belongsTo(User::class);
+
+    public function cita_urgencias(){
+        return $this->hasMany(CitaUrgencia::class);
     }
 
     # Aquí alguna función

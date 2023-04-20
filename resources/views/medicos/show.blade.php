@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-        <title>Ver Paciente</title>
+        <title>Ver Médico</title>
         <style>
             .box{
             width: 800px;
@@ -85,52 +85,49 @@
         </style>
     </head>
     <body>
-    <legend>Información del Paciente</legend>
+    <legend>Información del Médico</legend>
     <br>
-    <form action="{{route('pacientes.update', $paciente->id)}}" method="POST" role="form" class="box">
+    <form action="{{route('medicos.update', $medico->id)}}" method="POST" role="form" class="box">
         {{ csrf_field()}} 
         @method('put')
         <br>
         <div class="py-12">
             <label for="">Nombre</label>
-            <input readonly disabled type="text" name="nombre" value="{{$paciente-> nombre}}">
+            <input readonly disabled type="text" name="nombre" value="{{$medico-> nombre}}">
         </div>
         <div class="py-12">
             <label for="">Apellidos</label>
-            <input readonly disabled type="text" name="apellidos" value="{{$paciente-> apellidos}}">
+            <input readonly disabled type="text" name="apellidos" value="{{$medico-> apellidos}}">
         </div>
         <div class="">
                 <label for="">DNI</label>
-                <input readonly disabled type="text" class="" id="" value="{{$paciente-> dni}}">
+                <input readonly disabled type="text" class="" id="" value="{{$medico-> dni}}">
         </div>
         <div class="">
             <label for="">Sexo</label>
             <select readonly disabled name="sexo" id="sexo">
-                <option value="F" {{($paciente->sexo == 'Femenino')? 'selected': ''}}>Femenino</option>
-                <option value="M" {{($paciente->sexo == 'Masculino')? 'selected': ''}}>Masculino</option>
-                <option value="O" {{($paciente->sexo == 'Otro')? 'selected': ''}}>Otro</option> 
+                <option value="F" {{($medico->sexo == 'Femenino')? 'selected': ''}}>Femenino</option>
+                <option value="M" {{($medico->sexo == 'Masculino')? 'selected': ''}}>Masculino</option>
+                <option value="O" {{($medico->sexo == 'Otro')? 'selected': ''}}>Otro</option> 
             </select>
         </div>
             <div class="">
                 <label for="">Fecha de Nacimiento</label>
-                <input readonly disabled type="date" class="form-date" id="" value="{{$paciente-> fecha_nacimiento}}">
-            </div>
-            <div class="">
-                <label for="">Seguro</label>
-                <select readonly disabled name="seguro">
-                    <option value="Adeslas" {{($paciente->seguro == 'Adeslas')? 'selected': ''}}>Adeslas</option>
-                    <option value="Asisa" {{($paciente->seguro == 'Asisa')? 'selected': ''}}>Asisa</option>
-                    <option value="MAPFRE" {{($paciente->seguro == 'MAPFRE')? 'selected': ''}}>MAPFRE</option>
-                    <option value="Sanitas" {{($paciente->seguro == 'Sanitas')? 'selected': ''}}>Sanitas</option>
-                    <option value="None" {{($paciente->seguro == 'None')? 'selected': ''}}>None</option>
-                </select>
+                <input readonly disabled type="date" class="form-date" id="" value="{{$medico-> fecha_nacimiento}}">
             </div>
             <div class="">
                 <label for="">Correo</label>
-                <input readonly disabled type="text" class="" id="" value="{{$paciente-> correo}}">
+                <input readonly disabled type="text" class="" id="" value="{{$medico-> correo}}">
+            </div>
+            <div class="">
+                <label for="">Especialidad</label>
+                <select readonly disabled name="especialidad">
+                    <option value="Cardiología" {{($medico->especialidad == 'Cardiología')? 'selected': ''}}>Cardiología</option>
+                    <option value="Alergología" {{($medico->especialidad == 'Alergología')? 'selected': ''}}>Alergología</option>
+                </select>
             </div>
     </form>
     <br>
-        <a href="/pacientes" class="buttonCancelar">Volver</a>
+        <a href="/medicos" class="buttonCancelar">Volver</a>
     </body>
 </html>

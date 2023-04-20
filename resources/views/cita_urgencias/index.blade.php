@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Pacientes</title>
+        <title>Citas</title>
         <style>
 
             .content-table {
@@ -62,56 +62,42 @@
                 height: 100%;
             }
 
-            /* input[type=text] {
-                background-color: white;
-                background-image: url('searchicon.png');
-                background-position: 10px 10px;
-                background-repeat: no-repeat;
-                padding-left: 40px;
-            } */
         </style>
     </head>
     <body>
-    <h2> Listado de Pacientes</h2>
+    <h2> Listado de Citas</h2>
     <!-- <input type="text" placeholder="Buscar..."> -->
     <table class="content-table">
         <thead class="content-table thead tr">
         <tr>
-            <td> Nombre </td>
-            <td> Apellidos </td>
-            <td> DNI </td>
-            <td> Sexo </td>
-            <td> Fecha de Nacimiento </td>
-            <td> Seguro </td>
-            <td> Correo </td>
-            <td> Opciones </td>
+            <td> Paciente </td>
+            <td> Enfermero </td>
+            <td> Médico </td>
+            <td> Fecha y Hora </td>
         </tr>
         </thead>
         <tbody class="content-table tbody tr:last-of-type">
-        @foreach ($pacientes as $paciente)
+        @foreach ($cita_urgencias as $cita_urgencia)
             <tr>
-                <td>{{ $paciente->nombre }}</td>
-                <td>{{ $paciente->apellidos }}</td>
-                <td>{{ $paciente->dni }}</td>
-                <td>{{ $paciente->sexo }}</td>
-                <td>{{ $paciente->fecha_nacimiento }}</td>
-                <td>{{ $paciente->seguro }}</td>
-                <td>{{ $paciente->correo }}</td>
+                <td>{{ $cita_urgencia->paciente_id }}</td>
+                <td>{{ $cita_urgencia->enfermero_id }}</td>
+                <td>{{ $cita_urgencia->medico_id }}</td>
+                <td>{{ $cita_urgencia->fecha_hora }}</td>
                 <td>
                 <div class="container">
-                    <form action="/pacientes/{{$paciente->id}}">
+                    <form action="/cita_urgencias/{{$cita_urgencia->id}}">
                         @csrf
                         @method('show')
                         <button type='submit'>Ver</button>
                     </form>
                     <br>
-                    <form action="/pacientes/{{$paciente->id}}/edit">
+                    <form action="/cita_urgencias/{{$cita_urgencia->id}}/edit">
                         @csrf
                         @method('edit')
                         <button type='submit'>Editar</button>
                     </form>
                     <br>
-                    <form action="/pacientes/{{$paciente->id}}" method="POST">
+                    <form action="/cita_urgencias/{{$cita_urgencia->id}}" method="POST">
                         @csrf
                         @method('delete')
                         <button type='submit'>Eliminar</button>
@@ -123,10 +109,9 @@
         </tbody>
     </table>
    <br>
-   <form action="/pacientes/create">
+   <form action="/cita_urgencias/create">
         @csrf
-        <button type='submit' class="nuevoPaciente">Nuevo Paciente</button>
+        <button type='submit' class="nuevoPaciente">Nuevo Administrativo</button>
     </form>
    </body>
 </html>
-  
