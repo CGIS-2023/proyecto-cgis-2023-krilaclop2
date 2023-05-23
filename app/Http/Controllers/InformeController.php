@@ -35,15 +35,19 @@ class InformeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create($citaId)
     {
-        $medicos = Medico::all();
-        $pacientes = Paciente::all();
+        $cita = CitaUrgencia::find($citaId);
 
-        if(Auth::user()->tipo_usuario_id == 2){
-            return view('informes/create', ['medico' => Auth::user()->medico, 'pacientes' => $pacientes]);
-        }
-        return view('informes/create', ['pacientes' => $pacientes, 'medicos' => $medicos]);
+        // Crear un nuevo informe
+        $informe = new Informe();
+        $informe->enfermero_id = $cita->enfermero_id;
+        $informe->medico_id = $cita->medico_id;
+        // Otros campos del informe
+        $informe->save();
+    
+        // Redirigir a la vista de edición del informe
+        return redirect()->route('informes.edit', $informe->id);
     }
 
     /**
@@ -54,7 +58,10 @@ class InformeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $informes = new Informe($request->all());
+        $informes->save();
+        session()->flash('success', 'Informe creada correctamente');
+        return redirect()->route('informes.index');
     }
 
     /**
@@ -82,7 +89,8 @@ class InformeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $informe = Informe::find($id);
+        return view('/informes/edit', ['informe'=>$informe]);
     }
 
     /**

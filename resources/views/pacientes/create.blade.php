@@ -99,9 +99,9 @@
             <div class="">
                 <label for="">Sexo</label>
                 <select name="sexo" id="" placeholder="Seleccione un sexo">
-                    <option value="F">Femenino</option>
-                    <option value="M">Masculino</option>
-                    <option value="O">Otro</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Otro">Otro</option>
                 </select>
             </div>
             <div class="">

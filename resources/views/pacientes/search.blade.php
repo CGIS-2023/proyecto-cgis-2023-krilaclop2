@@ -1,18 +1,7 @@
 <x-app-layout>
-<!DOCTYPE html>
-<html>
-    <head>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Pacientes') }}
-        </h2>
-    </x-slot>
-    <head>
-        <meta charset="utf-8">
-        <title>Pacientes</title>
-        <style>
 
-            .content-table {
+<style>
+     .content-table {
                 border-collapse: collapse;
                 margin: 25px 0;
                 text-align: center;
@@ -59,16 +48,7 @@
             }
 
             .nuevoPaciente {
-                height:40px;
-                width: 80px;
-                background-color: #009879;
-                border: none;
-                color: white;
-                padding: 5px 10px;
-                text-decoration: none;
-                margin: 13px 12px 12px 10px;
-                cursor: pointer;
-                border-radius: 5px;
+                width: 10%
             }
 
             .container {
@@ -77,25 +57,8 @@
                 align-items: center;
                 height: 100%;
             }
-
-            /* input[type=text] {
-                background-color: white;
-                background-image: url('searchicon.png');
-                background-position: 10px 10px;
-                background-repeat: no-repeat;
-                padding-left: 40px;
-            } */
         </style>
-    </head>
-    <body>
-    <!-- <input type="text" placeholder="Buscar..."> -->
-
-    <form class = "form-inline my-2 my-lg-0" type="get" action="{{ url('search')}}">
-        <input class="form-control mr-sm-2" name="query" type = "search" placeholder="Buscar">
-        <button class="nuevoPaciente" type="submit"> Buscar </button>
-    </form>
-
-    <table class="content-table">
+<table class="content-table">
         <thead class="content-table thead tr">
         <tr>
             <td> Nombre </td>
@@ -143,12 +106,4 @@
         @endforeach
         </tbody>
     </table>
-   <br>
-   <form action="/pacientes/create">
-        @csrf
-        <button type='submit' class= "button-opt">Nuevo Paciente</button>
-    </form>
-   </body>
-</html>
 </x-app-layout>
-  

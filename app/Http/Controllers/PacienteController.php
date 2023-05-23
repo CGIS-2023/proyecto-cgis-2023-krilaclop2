@@ -95,4 +95,12 @@ class PacienteController extends Controller
         $paciente->delete();
         return redirect()->action([PacienteController::class, 'index']);
     }
+
+    public function search()
+    {
+        $search_text = $_GET['query'];
+        $pacientes = Paciente::where('nombre', 'LIKE', '%'.$search_text.'%')->get();
+
+        return view('pacientes.search', compact('pacientes'));
+    }
 }
