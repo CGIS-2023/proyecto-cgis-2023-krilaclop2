@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             UnidadSeeder::class,
             EnfermeroSeeder::class,
             CitaUrgenciaSeeder::class,
-            InformeSeeder::class,
             TratamientoSeeder::class,
+            InformeSeeder::class,
         ]);
     }
 }

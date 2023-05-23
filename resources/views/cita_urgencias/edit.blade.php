@@ -1,27 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <nav class="font-semibold text-xl text-gray-800 leading-tight" aria-label="Breadcrumb">
-            <ol class="list-none p-0 inline-flex">
-              {{-- <li class="flex items-center">
-                <a href="#">Home</a>
-                <svg class="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
-              </li> --}}
-              <li class="flex items-center">
-                <a href="{{ route('cita_urgencias.index') }}">Citas</a>
-                <svg class="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
-              </li>
-            </ol>
-          </nav>
-    </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="font-semibold text-lg px-6 py-4 bg-white border-b border-gray-200">
-                    Nueva Cita
-                </div>
-                <div class="p-6 bg-white border-b border-gray-200">
-                <style>
-
+    <!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+        <title>Editar Paciente</title>
+        <style>
             .box{
             width: 800px;
             height: 1200px;
@@ -36,14 +18,14 @@
                 padding: 50px;
             }
 
-            input[type=select], input[type=datetime-local] {
+            input[type=text], input[type=date] {
                 width: 100%;
                 padding: 12px 20px;
                 margin: 20px 0;
                 box-sizing: border-box;
             }
 
-            input[type=select]:focus {
+            input[type=text]:focus {
                 border: 3px solid #555;
             }
 
@@ -60,54 +42,66 @@
                 flex-direction: row;
             }
 
-            legend {
-                font-size: 25px;
-                align-items: center;
+            .button-opt {
+                width: 80%;
+                background-color: #009879;
+                border: none;
+                color: white;
+                padding: 5px 10px;
+                text-decoration: none;
+                margin: 13px 12px 12px 10px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .nuevoPaciente {
+                height:40px;
+                width: 80px;
+                background-color: #009879;
+                border: none;
+                color: white;
+                padding: 5px 10px;
+                text-decoration: none;
+                margin: 13px 12px 12px 10px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .container {
                 display: flex;
                 justify-content: center;
+                align-items: center;
+                height: 100%;
             }
-            
+
         </style>
     </head>
     <body>
-            <form action="cita_urgencias.update" method="POST" role="form" class="box">
-            {{ csrf_field() }}
-            <div class="mt-4">
-                <x-label for="paciente_id" :value="__('Paciente')" />
-                        <x-select id="paciente_id" name="paciente_id" required>
-                            <option value="">{{__('Elige un paciente')}}</option>
-                                @foreach ($pacientes as $paciente)
-                                    <option value="{{$paciente->id}}" @if (old('paciente_id') == $paciente->id) selected @endif> [{{$paciente->id}}] {{$paciente->nombre}} {{$paciente->apellidos}} </option>
-                                @endforeach
-                        </x-select>
-            </div>
-            <div class="mt-4">
-                <x-label for="enfermero_id" :value="__('Enfermero')" />
-                        <x-select id="enfermero_id" name="enfermero_id" required>
-                            <option value="">{{__('Elige un enfermero')}}</option>
-                                @foreach ($enfermeros as $enfermero)
-                                    <option value="{{$enfermero->id}}" @if (old('enfermero_id') == $enfermero->id) selected @endif> [{{$enfermero->id}}] {{$enfermero->nombre}} {{$enfermero->apellidos}} </option>
-                                @endforeach
-                        </x-select>
-            </div>
-            <div class="mt-4">
-                <x-label for="medico_id" :value="__('Médico')" />
-                        <x-select id="medico_id" name="medico_id" required>
-                            <option value="">{{__('Elige un medico')}}</option>
-                                @foreach ($medicos as $medico)
-                                    <option value="{{$medico->id}}" @if (old('medico_id') == $medico->id) selected @endif> [{{$medico->id}}] {{$medico->nombre}} {{$medico->apellidos}} </option>
-                                @endforeach
-                        </x-select>
-            </div>
+    <br>
+    <form action="{{route('cita_urgencias.update', $cita_urgencia->id)}}" method="POST" role="form" class="box">
+        {{ csrf_field()}} 
+        @method('put')
+        <div class="">
+            <label for="">Paciente</label>
+            <input type="text" name="nombre" value="{{$cita_urgencia-> paciente_id}}">
+        </div>
+        <div class="">
+            <label for="">Enfermero</label>
+            <input type="text" name="apellidos" value="{{$cita_urgencia-> enfermero_id}}">
+        </div>
+        <div class="">
+                <label for="">Médico</label>
+                <input type="text" class="" id="" value="{{$cita_urgencia-> medico_id}}">
+        </div>
             <div class="">
-                <x-label for="">Fecha y Hora</x-label>
-                <input type="datetime-local" id="fecha_hora" name = "fecha_hora" class="">
+                <label for="">Fecha y Hora</label>
+                <input type="datetime-local" class="form-date" id="" value="{{$cita_urgencia-> fecha_hora}}">
             </div>
-
-            <x-button type="button" class="bg-red-800 hover:bg-red-700">
-                            <a href="/informes/create"> Generar Informe </a>
-                        </x-button>
-
+            @if(in_array(Auth::user()->tipo_usuario_id, [2]))
+            <x-button type="button" style="float: right;" class="bg-red-800 hover:bg-red-700">
+                <a href="/informes/create"> Generar Informe </a>
+            </x-button>
+        
             <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -127,7 +121,7 @@
                             <x-select id="tratamiento_id" name="tratamiento_id" required>
                                 <option value="">{{__('Elige un tratamiento')}}</option>
                                 @foreach ($tratamientos as $tratamiento)
-                                    <option value="{{$tratamiento->id}}" @if (old('tratamiento_id') == $tratamiento->id) selected @endif>{{$tratamiento->nombre}}</option>
+                                    <option value="{{$tratamiento->id}}" @if (old('tratamiento_id') == $tratamiento->id) selected @endif>{{$tratamiento->nombre}} {{$tratamiento->dosis}}</option>
                                 @endforeach
                             </x-select>
                         </div>
@@ -157,6 +151,7 @@
 
                             <x-input id="comentarios" class="block mt-1 w-full" type="text" name="comentarios" :value="old('name')" />
                         </div>
+                    @endif
 
             <div class="flex items-center justify-end mt-4">
                             <x-button type="button" class="bg-red-800 hover:bg-red-700">
@@ -174,4 +169,8 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+
+    </form>
+    </body>
+</html>
+        </x-app-layout>

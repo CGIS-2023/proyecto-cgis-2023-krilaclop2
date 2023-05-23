@@ -77,6 +77,7 @@ class EnfermeroController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $enfermero = Enfermero::find($id);
         $enfermero->fill($request->all());// los actualiza
         $enfermero->save();//se guarda
         return redirect()->action([EnfermeroController::class, 'index']);

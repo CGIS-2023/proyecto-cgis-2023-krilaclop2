@@ -1,3 +1,4 @@
+<x-app-layout>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,7 +6,7 @@
         <title>Administrativos</title>
         <style>
 
-            .content-table {
+.content-table {
                 border-collapse: collapse;
                 margin: 25px 0;
                 text-align: center;
@@ -39,7 +40,7 @@
                 padding: 50px;
             }
 
-            button {
+            .button-opt {
                 width: 80%;
                 background-color: #009879;
                 border: none;
@@ -93,19 +94,19 @@
                     <form action="/administrativos/{{$administrativo->id}}">
                         @csrf
                         @method('show')
-                        <button type='submit'>Ver</button>
+                        <button  class="button-opt" type='submit'>Ver</button>
                     </form>
                     <br>
                     <form action="/administrativos/{{$administrativo->id}}/edit">
                         @csrf
                         @method('edit')
-                        <button type='submit'>Editar</button>
+                        <button  class="button-opt" type='submit'>Editar</button>
                     </form>
                     <br>
                     <form action="/administrativos/{{$administrativo->id}}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type='submit'>Eliminar</button>
+                        <button  class="button-opt" type='submit'>Eliminar</button>
                     </form>
                 </div>
                 </td>
@@ -116,7 +117,8 @@
    <br>
    <form action="/administrativos/create">
         @csrf
-        <button type='submit' class="nuevoPaciente">Nuevo Administrativo</button>
+        <button type='submit' class="button-opt">Nuevo Administrativo</button>
     </form>
    </body>
 </html>
+</x-app-layout>

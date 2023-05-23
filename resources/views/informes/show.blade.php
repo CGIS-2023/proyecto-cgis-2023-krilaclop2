@@ -100,12 +100,9 @@
    
             <div class="flex items-center justify-end mt-4">
                 <x-button type="button" class="bg-red-800 hover:bg-red-700">
-                    <a href={{route('cita_urgencias.index')}}>
+                    <a href={{route('informes.index')}}>
                         {{ __('Cancelar') }}
                     </a>
-                </x-button>
-                <x-button class="ml-4">
-                        {{ __('Guardar') }}
                 </x-button>
             </div>
         </form>

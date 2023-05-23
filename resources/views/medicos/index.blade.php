@@ -1,3 +1,4 @@
+<x-app-layout>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,7 +6,7 @@
         <title>Médicos</title>
         <style>
 
-            .content-table {
+.content-table {
                 border-collapse: collapse;
                 margin: 25px 0;
                 text-align: center;
@@ -39,7 +40,7 @@
                 padding: 50px;
             }
 
-            button {
+            .button-opt {
                 width: 80%;
                 background-color: #009879;
                 border: none;
@@ -95,19 +96,19 @@
                     <form action="/medicos/{{$medico->id}}">
                         @csrf
                         @method('show')
-                        <button type='submit'>Ver</button>
+                        <button class="button-opt" type='submit'>Ver</button>
                     </form>
                     <br>
                     <form action="/medicos/{{$medico->id}}/edit">
                         @csrf
                         @method('edit')
-                        <button type='submit'>Editar</button>
+                        <button  class="button-opt" type='submit'>Editar</button>
                     </form>
                     <br>
                     <form action="/medicos/{{$medico->id}}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type='submit'>Eliminar</button>
+                        <button  class="button-opt" type='submit'>Eliminar</button>
                     </form>
                 </div>
                 </td>
@@ -118,7 +119,8 @@
    <br>
    <form action="/medicos/create">
         @csrf
-        <button type='submit' class="nuevoPaciente">Nuevo Médico</button>
+        <button  class="button-opt" type='submit' >Nuevo Médico</button>
     </form>
    </body>
 </html>
+</x-app-layout>

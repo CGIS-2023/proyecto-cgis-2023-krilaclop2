@@ -22,7 +22,7 @@ class InformeSeeder extends Seeder
                 'observaciones' => "Llega a urgencias con dolores de cabeza y tos severa. Fiebre alta: 38º.",
                 'paciente_id'=> 1,
                 'medico_id' => 2,
-                // 'tratamiento_id' => ,
+                'tratamiento_id' => 1,
                 'cita_urgencia_id' => 1,
             ],
             [
@@ -31,7 +31,7 @@ class InformeSeeder extends Seeder
                 'observaciones' => "Llega a urgencias con problemas respiratorios y dolor torácico.",
                 'paciente_id'=> 2,
                 'medico_id' => 1,
-                // 'tratamiento_id' => ,
+                'tratamiento_id' => 1,
                 'cita_urgencia_id' => 2,
             ],
         ]);

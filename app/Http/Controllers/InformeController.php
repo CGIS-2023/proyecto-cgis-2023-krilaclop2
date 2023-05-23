@@ -35,19 +35,12 @@ class InformeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($citaId)
+    public function create()
     {
-        $cita = CitaUrgencia::find($citaId);
-
-        // Crear un nuevo informe
-        $informe = new Informe();
-        $informe->enfermero_id = $cita->enfermero_id;
-        $informe->medico_id = $cita->medico_id;
-        // Otros campos del informe
-        $informe->save();
-    
-        // Redirigir a la vista de edición del informe
-        return redirect()->route('informes.edit', $informe->id);
+        $pacientes = Paciente::all();
+        $enfermeros = Enfermero::all();
+        $medicos = Medico::all();
+        return view('informes/create', ['pacientes'=>$pacientes, 'enfermeros'=>$enfermeros, 'medicos'=>$medicos]);
     }
 
     /**

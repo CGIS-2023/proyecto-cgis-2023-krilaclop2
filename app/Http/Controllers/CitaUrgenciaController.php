@@ -25,6 +25,8 @@ class CitaUrgenciaController extends Controller
         $pacientes = Paciente::all();
         $enfermeros = Enfermero::all();
         $unidads = Unidad::all();
+        $cita_urgencias = CitaUrgencia::all();  
+
 
         if (Auth::user()->tipo_usuario_id == 3){
             $cita_urgencias = Auth::user()->enfermero->cita_urgencias()->paginate(21);     
@@ -112,7 +114,11 @@ class CitaUrgenciaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cita = CitaUrgencia::find($id);
+        $cita->fill($request->all());
+        $cita->save();
+        session()->flash('success', 'Cita modificada correctamente');
+        return redirect()->route('cita_urgencias.index');
     }
 
     /**

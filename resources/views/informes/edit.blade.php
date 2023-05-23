@@ -24,19 +24,11 @@
 
             .box{
             width: 800px;
-            height: 900px;
+            height: 650px;
             background-color: #f1f1f1;
             border-radius: 10px;
             margin: auto;
             padding: 20px;
-            }
-
-            textarea{
-                width: 100%;
-                height: 150px;
-                padding: 12px 20px;
-                margin: 20px 0;
-                box-sizing: border-box;
             }
 
             body {
@@ -79,33 +71,36 @@
         </style>
     </head>
     <body>
-            <form action="/informes" method="POST" role="form" class="box">
+            <form action="{{route('informes.update', $informe->id)}}" method="POST" role="form" class="box">
             {{ csrf_field() }}
-            <div class="mt-4">
-                <x-label for="riesgo" :value="__('Riesgo')" />
-                        <x-select id="riesgo" name="riesgo" required>
-                            <option value="">{{__('Nivel de Riesgo')}}</option>
-                            <option value="">{{__('Nivel I')}}</option>
-                            <option value="">{{__('Nivel II')}}</option>
-                            <option value="">{{__('Nivel III')}}</option>
-                            <option value="">{{__('Nivel IV')}}</option>
-                            <option value="">{{__('Nivel V')}}</option>
-                        </x-select>
+            <div class="">
+            <label for="">Nivel de Riesgo</label>
+            <input type="select" name="riesgo" value="{{$informe-> riesgo}}">
             </div>
 
-            <div class="mt-4">
-                <x-label for="comentarios" :value="__('Observaciones')" />
-                <textarea name="comentarios" rows="10" cols="40">...</textarea>
+            <div class="">
+            <label for="">Comentarios</label>
+            <input type="textarea" name="observaciones" value="{{$informe-> observaciones}}">
             </div> 
 
-            <div class="mt-4">
-                <x-label for="diagnostico" :value="__('Diagnóstico')" />
-                <textarea name="comentarios" rows="10" cols="40">...</textarea>
+            <div class="">
+            <label for="">Diagnóstico</label>
+            <input type="textarea" name="diagnostico" value="{{$informe-> diagnostico}}">
+            </div>  
+
+            <div class="">
+            <label for="">Paciente</label>
+            <input type="select" name="paciente" value="{{$informe-> paciente_id}}">
             </div>
+            
+            <div class="">
+            <label for="">Médico</label>
+            <input type="select" name="medico" value="{{$informe-> medico_id}}">
+            </div>  
    
             <div class="flex items-center justify-end mt-4">
                 <x-button type="button" class="bg-red-800 hover:bg-red-700">
-                    <a href={{route('cita_urgencias.index')}}>
+                    <a href={{route('informes.index')}}>
                         {{ __('Cancelar') }}
                     </a>
                 </x-button>

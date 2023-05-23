@@ -63,8 +63,7 @@ El sistema deberá permitir administrar de manera eficiente los servicios de urg
 
 ## Usuarios del sistema
 
-- **Paciente:**
-- - Pacientes con diferentes necesidades según su prioridad y riesgo.
+- **Paciente:** Pacientes con diferentes necesidades según su prioridad y riesgo.
 
 - **Administrativo.**
 
@@ -73,7 +72,7 @@ El sistema deberá permitir administrar de manera eficiente los servicios de urg
 - - Enfermeros de tratamiento.
 
 - **Médico de urgencias:**
-- - Médicos especializados en diferentes campos.
+- Médicos especializados en diferentes campos.
 
 
 ## Requisitos de información
@@ -195,6 +194,9 @@ El sistema debe ser fácil de mantener y actualizar.
 
 - **RNF06: Interfaz.**
 El sistema debe presentar una interfaz amigable, fácil de usar y comprender por los usuarios.
+
+
+## Reglas de negocio
 
 - **RN01: Eliminar Paciente.**
 El sistema deberá evitar que se puedan eliminar permanentemente los datos correspondientes a un paciente.
