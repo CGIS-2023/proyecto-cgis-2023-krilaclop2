@@ -19,8 +19,11 @@ class DatabaseSeeder extends Seeder
             PacienteSeeder::class,
             MedicoSeeder::class,
             AdministrativoSeeder::class,
+            UnidadSeeder::class,
             EnfermeroSeeder::class,
             CitaUrgenciaSeeder::class,
+            InformeSeeder::class,
+            TratamientoSeeder::class,
         ]);
     }
 }

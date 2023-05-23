@@ -76,11 +76,9 @@
                 </div>
 
                 <div class="links">
+                    <a href=https://youtu.be/dQw4w9WgXcQ> Puede ser? </a>
+                    <a href=https://youtu.be/rqAnXE7vzRw> XD </a>
                     <a href="https://docs.google.com/document/d/1PJ4XQMhbaTsfHtydcpAgyM3474Mv0MHhffudVmPXV-4/edit?usp=sharing">Documento de Requisitos</a>
-                    <a href="/pacientes">Pacientes</a>
-                    <a href="/medicos">Médicos</a>
-                    <a href="/enfermeros">Enfermeros</a>
-                    <a href="/administrativos">Administrativos</a>
                     <a href="https://github.com/CGIS-2023/proyecto-cgis-2023-krilaclop2">GitHub</a>
                 </div>
             </div>

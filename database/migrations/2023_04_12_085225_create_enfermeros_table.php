@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('sexo');
             $table->date('fecha_nacimiento');
             $table->string('correo');
-            $table->string('turno');
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');

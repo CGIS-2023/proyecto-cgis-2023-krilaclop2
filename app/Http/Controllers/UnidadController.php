@@ -2,30 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medico;
+use App\Models\Unidad;
 use Illuminate\Http\Request;
 
-class MedicoController extends Controller
+class UnidadController extends Controller
 {
- 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $medicos = Medico::all();
-        return view ('/medicos/index', ['medicos' => $medicos]);
-    }
-
-    // public function citasHoyMedico(Medico $medico)
+    
+    //  public function __construct()
     // {
-    //     $citasHoy = $medico->citasHoy;
-    //     return view('cita_urgencias', ['citasHoy' => $citasHoy]);
+    //     $this->authorizeResource(Especialidad::class, 'especialidad');
     // }
 
-
+    public function index()
+    {
+        $unidades = Unidad::paginate(25);
+        return view('/unidades/index', ['unidades' => $unidades]);
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -33,7 +31,7 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        return view('/medicos/create');
+        //
     }
 
     /**
@@ -44,9 +42,7 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-        $medico = new Medico($request->all());
-        $medico->save();
-        return redirect()->action([MedicoController::class, 'index']);
+        //
     }
 
     /**
@@ -57,8 +53,7 @@ class MedicoController extends Controller
      */
     public function show($id)
     {
-        $medico = Medico::find($id);
-        return view('/medicos/show', ['medico' => $medico]);
+        //
     }
 
     /**
@@ -67,9 +62,9 @@ class MedicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Medico $medico)
+    public function edit($id)
     {
-        return view('/medicos/edit', ['medico' => $medico]);
+        //
     }
 
     /**
@@ -79,11 +74,9 @@ class MedicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Medico $medico)
-    {   //variable $request contiene campos modificados
-        $medico->fill($request->all());// los actualiza
-        $medico->save();//se guarda
-        return redirect()->action([MedicoController::class, 'index']);
+    public function update(Request $request, $id)
+    {
+        //
     }
 
     /**
@@ -94,8 +87,6 @@ class MedicoController extends Controller
      */
     public function destroy($id)
     {
-        $medico = Medico::find($id);
-        $medico->delete();
-        return redirect()->action([MedicoController::class, 'index']);
+        //
     }
 }

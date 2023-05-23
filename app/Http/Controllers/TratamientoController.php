@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medico;
 use Illuminate\Http\Request;
 
-class MedicoController extends Controller
+class TratamientoController extends Controller
 {
- 
     /**
      * Display a listing of the resource.
      *
@@ -15,16 +13,9 @@ class MedicoController extends Controller
      */
     public function index()
     {
-        $medicos = Medico::all();
-        return view ('/medicos/index', ['medicos' => $medicos]);
+        $tratamientos = Tratamiento::paginate(25);
+        return view('/tratamientos/index', ['tratamientos' => $tratamientos]);
     }
-
-    // public function citasHoyMedico(Medico $medico)
-    // {
-    //     $citasHoy = $medico->citasHoy;
-    //     return view('cita_urgencias', ['citasHoy' => $citasHoy]);
-    // }
-
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +24,7 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        return view('/medicos/create');
+        return view('tratamientos/create');
     }
 
     /**
@@ -44,9 +35,13 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-        $medico = new Medico($request->all());
-        $medico->save();
-        return redirect()->action([MedicoController::class, 'index']);
+        $this->validate($request, [
+            'nombre' => 'required|string|max:255',
+            'dosis' => 'required|string'
+        ]);
+        $tratamiento = new Tratamiento($request->all());
+        $tratamiento->save();
+        return redirect()->route('tratamientos.index');
     }
 
     /**
@@ -57,8 +52,7 @@ class MedicoController extends Controller
      */
     public function show($id)
     {
-        $medico = Medico::find($id);
-        return view('/medicos/show', ['medico' => $medico]);
+        //
     }
 
     /**
@@ -67,9 +61,9 @@ class MedicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Medico $medico)
+    public function edit($id)
     {
-        return view('/medicos/edit', ['medico' => $medico]);
+        return view('tratamientos/edit', ['tratamiento' => $tratamiento]);
     }
 
     /**
@@ -79,11 +73,15 @@ class MedicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Medico $medico)
-    {   //variable $request contiene campos modificados
-        $medico->fill($request->all());// los actualiza
-        $medico->save();//se guarda
-        return redirect()->action([MedicoController::class, 'index']);
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nombre' => 'required|string|max:255',
+            'dosis' => 'required|string'
+        ]);
+        $tratamiento->fill($request->all());
+        $tratamiento->save();
+        return redirect()->route('tratamientos.index');
     }
 
     /**
@@ -94,8 +92,13 @@ class MedicoController extends Controller
      */
     public function destroy($id)
     {
-        $medico = Medico::find($id);
-        $medico->delete();
-        return redirect()->action([MedicoController::class, 'index']);
+        if($medicamento->delete()) {
+            session()->flash('success', 'Tratamiento borrado correctamente.');
+        }
+        else{
+            session()->flash('warning', 'No pudo borrarse el Tratamiento.');
+        }
+        return redirect()->route('tratamientos.index');
+    }
     }
 }

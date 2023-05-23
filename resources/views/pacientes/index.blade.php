@@ -1,5 +1,12 @@
+<x-app-layout>
 <!DOCTYPE html>
 <html>
+    <head>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Pacientes') }}
+        </h2>
+    </x-slot>
     <head>
         <meta charset="utf-8">
         <title>Pacientes</title>
@@ -39,7 +46,7 @@
                 padding: 50px;
             }
 
-            button {
+            .button-opt {
                 width: 80%;
                 background-color: #009879;
                 border: none;
@@ -72,7 +79,6 @@
         </style>
     </head>
     <body>
-    <h2> Listado de Pacientes</h2>
     <!-- <input type="text" placeholder="Buscar..."> -->
     <table class="content-table">
         <thead class="content-table thead tr">
@@ -102,19 +108,19 @@
                     <form action="/pacientes/{{$paciente->id}}">
                         @csrf
                         @method('show')
-                        <button type='submit'>Ver</button>
+                        <button class= "button-opt" type='submit'>Ver</button>
                     </form>
                     <br>
                     <form action="/pacientes/{{$paciente->id}}/edit">
                         @csrf
                         @method('edit')
-                        <button type='submit'>Editar</button>
+                        <button class= "button-opt" type='submit'>Editar</button>
                     </form>
                     <br>
                     <form action="/pacientes/{{$paciente->id}}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type='submit'>Eliminar</button>
+                        <button class= "button-opt" type='submit'>Eliminar</button>
                     </form>
                 </div>
                 </td>
@@ -125,8 +131,9 @@
    <br>
    <form action="/pacientes/create">
         @csrf
-        <button type='submit' class="nuevoPaciente">Nuevo Paciente</button>
+        <button type='submit' class= "button-opt">Nuevo Paciente</button>
     </form>
    </body>
 </html>
+</x-app-layout>
   

@@ -1,3 +1,4 @@
+<x-app-layout>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,7 +6,8 @@
         <title>Enfermeros</title>
         <style>
 
-            .content-table {
+
+.content-table {
                 border-collapse: collapse;
                 margin: 25px 0;
                 text-align: center;
@@ -39,7 +41,7 @@
                 padding: 50px;
             }
 
-            button {
+            .button-opt {
                 width: 80%;
                 background-color: #009879;
                 border: none;
@@ -76,7 +78,6 @@
             <td> Sexo </td>
             <td> Fecha de Nacimiento </td>
             <td> Correo </td>
-            <td> Turno </td>
             <td> Opciones </td>
         </tr>
         </thead>
@@ -89,25 +90,24 @@
                 <td>{{ $enfermero->sexo }}</td>
                 <td>{{ $enfermero->fecha_nacimiento }}</td>
                 <td>{{ $enfermero->correo }}</td>
-                <td>{{ $enfermero->turno }}</td>
                 <td>
                 <div class="container">
                     <form action="/enfermeros/{{$enfermero->id}}">
                         @csrf
                         @method('show')
-                        <button type='submit'>Ver</button>
+                        <button class='button-opt' type='submit'>Ver</button>
                     </form>
                     <br>
                     <form action="/enfermeros/{{$enfermero->id}}/edit">
                         @csrf
                         @method('edit')
-                        <button type='submit'>Editar</button>
+                        <button class='button-opt' type='submit'>Editar</button>
                     </form>
                     <br>
                     <form action="/enfermeros/{{$enfermero->id}}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type='submit'>Eliminar</button>
+                        <button class='button-opt' type='submit'>Eliminar</button>
                     </form>
                 </div>
                 </td>
@@ -118,7 +118,8 @@
    <br>
    <form action="/enfermeros/create">
         @csrf
-        <button type='submit' class="nuevoPaciente">Nuevo Enfermero</button>
+        <button type='submit' class='button-opt'>Nuevo Enfermero</button>
     </form>
    </body>
 </html>
+</x-app-layout>

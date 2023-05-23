@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Unidad;
 use App\Models\Enfermero;
 use Illuminate\Http\Request;
+use App\Http\Controllers\EnfermeroController;
 
 class EnfermeroController extends Controller
 {
@@ -25,7 +27,7 @@ class EnfermeroController extends Controller
      */
     public function create()
     {
-        //
+        return view('/enfermeros/create');
     }
 
     /**
@@ -36,7 +38,9 @@ class EnfermeroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $enfermero = new Enfermero($request->all());
+        $enfermero->save();
+        return redirect()->action([EnfermeroController::class, 'index']);
     }
 
     /**
@@ -47,7 +51,8 @@ class EnfermeroController extends Controller
      */
     public function show($id)
     {
-        //
+        $enfermero = Enfermero::find($id);
+        return view('/enfermeros/show', ['enfermero' => $enfermero]);
     }
 
     /**
@@ -58,7 +63,9 @@ class EnfermeroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $enfermero = Enfermero::find($id);
+        $unidads = Unidad::all();
+        return view('/enfermeros/edit', ['enfermero' => $enfermero, 'unidads' => $unidads]);
     }
 
     /**
@@ -70,7 +77,9 @@ class EnfermeroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $enfermero->fill($request->all());// los actualiza
+        $enfermero->save();//se guarda
+        return redirect()->action([EnfermeroController::class, 'index']);
     }
 
     /**
@@ -81,6 +90,24 @@ class EnfermeroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $medico = Enfermero::find($id);
+        $medico->delete();
+        return redirect()->action([EnfermeroController::class, 'index']);
+    }
+
+    public function attach_unidad(Request $request, Enfermero $enfermero)
+    {
+        $this->validateWithBag('attach',$request, [
+            'unidad_id' => 'required|exists:unidads,id'
+        ]);
+        $unidad->unidades()->attach($request->input("unidad_id"));
+        return redirect()->route('enfermeros.edit', $enfermero->id);
+    }
+
+    public function detach_unidad(Enfermero $enfermero, Unidad $unidad)
+    {
+        $enfermero->unidades()->detach($unidad->id);
+        return redirect()->route('enfermeros.edit', $enfermero->id);
+
     }
 }

@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <img src="https://img.freepik.com/free-vector/health-care-logo-icon_125964-471.jpg?w=826&t=st=1684845226~exp=1684845826~hmac=3f498ff707fa7167e18dc12a3660c3ada8bae156729d7b7cc6b1343340243f8c" width=60px height=60px>
                     </a>
                 </div>
 
@@ -18,6 +18,16 @@
                         </x-nav-link>
                         <x-nav-link :href="route('cita_urgencias.index')" :active="request()->routeIs('cita_urgencias.index') or request()->routeIs('cita_urgencias.create') or request()->routeIs('cita_urgencias.edit') or request()->routeIs('cita_urgencias.show')">
                             {{ __('Lista de Citas') }}
+                        </x-nav-link>
+                    @endif
+                    @if(in_array(Auth::user()->tipo_usuario_id, [2]))
+                        <x-nav-link :href="route('informes.index')" :active="request()->routeIs('informes.index') or request()->routeIs('informes.create') or request()->routeIs('informes.edit') or request()->routeIs('informes.show')">
+                            {{ __('Informes Médicos') }}
+                        </x-nav-link>
+                    @endif
+                    @if(in_array(Auth::user()->tipo_usuario_id, [3]))
+                        <x-nav-link :href="route('unidades.index')" :active="request()->routeIs('unidades.index') or request()->routeIs('unidades.create') or request()->routeIs('unidades.edit') or request()->routeIs('unidades.show')">
+                            {{ __('Unidades') }}
                         </x-nav-link>
                     @endif
                     @if(Auth::user()->tipo_usuario_id == 4)
@@ -35,6 +45,12 @@
                             </x-nav-link>
                             <x-nav-link :href="route('pacientes.index')" :active="request()->routeIs('pacientes.index') or request()->routeIs('pacientes.create') or request()->routeIs('pacientes.edit') or request()->routeIs('pacientes.show')">
                                 {{ __('Pacientes') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('informes.index')" :active="request()->routeIs('informes.index') or request()->routeIs('informes.create') or request()->routeIs('informes.edit') or request()->routeIs('informes.show')">
+                                {{ __('Informes Médicos') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('unidades.index')" :active="request()->routeIs('unidades.index') or request()->routeIs('unidades.create') or request()->routeIs('unidades.edit') or request()->routeIs('unidades.show')">
+                                {{ __('Unidades') }}
                             </x-nav-link>
                     @endif
                 </div>
